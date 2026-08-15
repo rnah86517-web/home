@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daftar Item — Platform JB</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* === Variabel Warna (konsisten dengan semua halaman) === */
+    :root {
+      --bg: #0f0f0f;
+      --fg: #f5f0e8;
+      --muted: #8a8378;
+      --accent: #e8a824;
+      --accent-hover: #f0bc4a;
+      --card: #1a1a1a;
+      --card-hover: #242424;
+      --border: #2a2a2a;
+      --danger: #e84040;
+      --success: #2ecc71;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === Navbar === */
+    .navbar {
+      background-color: rgba(15, 15, 15, 0.92) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1050;
+    }
+    .navbar-brand {
+      color: var(--accent) !important;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .navbar .nav-link {
+      color: var(--fg) !important;
+      font-weight: 400;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem !important;
+      border-radius: 8px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: var(--accent) !important;
+      background-color: rgba(232, 168, 36, 0.08);
+    }
+    .navbar .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 20px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: transform 0.25s ease;
+    }
+    .navbar .nav-link:hover::after,
+    .navbar .nav-link.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+    .navbar-toggler {
+      border: 1px solid var(--border) !important;
+      padding: 4px 8px;
+    }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    /* === Heading Section === */
+    .section-heading {
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+      color: var(--fg);
+    }
+    .section-subheading {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+    .accent-line {
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* === Hero Carousel === */
+    .hero-carousel .carousel-inner {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .hero-carousel .carousel-item img {
+      width: 100%;
+      height: auto;
+      max-height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .hero-carousel .carousel-item img {
+        max-height: 400px;
+      }
+    }
+    .hero-carousel .carousel-indicators { bottom: 10px; }
+    .hero-carousel .carousel-indicators [data-bs-target] {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background-color: var(--muted);
+      border: none; opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    .hero-carousel .carousel-indicators .active {
+      background-color: var(--accent);
+      opacity: 1; width: 24px; border-radius: 4px;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 40px; height: 40px;
+      top: 50%; transform: translateY(-50%);
+      bottom: auto;
+      background: rgba(15, 15, 15, 0.7);
+      border-radius: 50%;
+      margin: 0 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .carousel:hover .carousel-control-prev,
+    .carousel:hover .carousel-control-next { opacity: 1; }
+
+    /* === Kategori Banner Card === */
+    .kategori-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+    }
+    .kategori-card:hover {
+      border-color: rgba(232, 168, 36, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(232, 168, 36, 0.1);
+    }
+    .kategori-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .kategori-card:hover img {
+      transform: scale(1.06);
+    }
+    .kategori-card .kategori-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,15,15,0.92) 0%, rgba(15,15,15,0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.2rem;
+    }
+    .kategori-card .kategori-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--fg);
+      margin-bottom: 2px;
+    }
+    .kategori-card .kategori-count {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .kategori-card .kategori-arrow {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px; height: 32px;
+      background: rgba(232, 168, 36, 0.15);
+      border: 1px solid rgba(232, 168, 36, 0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.75rem;
+      transition: all 0.3s ease;
+    }
+    .kategori-card:hover .kategori-arrow {
+      background: var(--accent);
+      color: var(--bg);
+      transform: translate(2px, -2px);
+    }
+    @media (min-width: 768px) {
+      .kategori-card img { height: 220px; }
+    }
+
+    /* === Promo Carousel (bawah) === */
+    .promo-carousel .carousel-inner {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .promo-carousel .carousel-item img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .promo-carousel .carousel-item img {
+        max-height: 300px;
+      }
+    }
+    .promo-carousel .carousel-indicators { bottom: 8px; }
+    .promo-carousel .carousel-indicators [data-bs-target] {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background-color: var(--muted);
+      border: none; opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+    .promo-carousel .carousel-indicators .active {
+      background-color: var(--accent);
+      opacity: 1; width: 24px; border-radius: 4px;
+    }
+
+    /* === Footer === */
+    .site-footer {
+      margin-top: 3rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* === Animasi Masuk === */
+    .anim-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .anim-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === Toast === */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .custom-toast {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      animation: toast-in 0.4s ease, toast-out 0.4s ease 2.6s forwards;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    @keyframes toast-in {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes toast-out {
+      to { opacity: 0; transform: translateX(40px); }
+    }
+
+    /* === Scrollbar === */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim-in { opacity: 1; transform: none; transition: none; }
+      .kategori-card, .kategori-card img, .kategori-card .kategori-arrow {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-store me-2"></i>Platform JB
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="https://jb-gag.vercel.app" target="_self"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="https://daftar-item-six.vercel.app" target="_self"><i class="fas fa-boxes-stacked me-1"></i> Daftar Item</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://daftar-harga-six.vercel.app" target="_self"><i class="fas fa-tags me-1"></i> Daftar Harga</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://transaksi-psi.vercel.app" target="_self" <i class="fas fa-receipt me-1"></i> Transaksi</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container pb-4">
+
+    <!-- ========== HERO CAROUSEL ========== -->
+    <section class="pt-3 pb-1" aria-label="Banner Kategori">
+      <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="4500">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczO-U1CAcWwK_c4hTDIkO11VubPv7afpuvaIhoG_KOTY-oBE8vYoFjrDNuUVNEoYxsoG114bRm5LSDOWIXw6ZxDIFz9Z1OgkGJkOtBYZYFleZB5d17dBLuQgnwFOS66WrBwioo0JLuu0iPC5snXIlPMvlQ=w898-h599-s-no-gm?authuser=0" alt="Banner kategori 1">
+          </div>
+          <div class="carousel-item">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczMdYZuag2tX8G8R3W-O52PR06LE4dvgyjlgXdMDmUIqe27Lo0iJW-jnapVGKSkWL2iRQIVXZ1aUQ0gbc4DcgJU5iFAfmgiioJhanWlp8G6P1suKqV3tWnBTGezJz9dtGZ2FO1Gzvk79TTjMgW6SRvDaEQ=w1065-h599-s-no-gm?authuser=0" alt="Banner kategori 2">
+          </div>
+          <div class="carousel-item">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPlTbtS6EmevGimJNYd39vW1srOdCkhr-C6lS8Z9owf3G6FCWCDZcasaDQZ4y7wDI-2ao3GYw_HwzdoqqPDKjilybzdRjldJnw8z0vga4eMwmuS-qi748eKECChwQErJUeVpxziTXBgtsMZ7gc-FnZPxg=w1065-h599-s-no-gm?authuser=0" alt="Banner kategori 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========== KATEGORI STOK ========== -->
+    <section class="mt-4" aria-label="Kategori Stok">
+      <div class="accent-line"></div>
+      <h2 class="section-heading">Kategori Stok</h2>
+      <p class="section-subheading">Jelajahi item berdasarkan kategori yang tersedia</p>
+
+      <div class="row g-3">
+
+        <!-- Kategori 1 -->
+        <div class="col-12 col-md-4 anim-in">
+          <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori A')">
+            <div style="overflow:hidden;">
+              <img src="https://lh3.googleusercontent.com/pw/AP1GczPoIr9Uh9yc4nudEb1Ze_Jc_yPyBK14mecpOIkruKnZmVSukssv98Sx5LLgHzxdNLXVvHuB6urnQ23-4SfhQVEx1mwJzHUiw3Si2zel78tlCRUdu8ykSwTSv3cLkW5Onk4jB_hn9g6_Lk8ZZFQmxXsLEA=w968-h348-s-no-gm?authuser=0" alt="Kategori A">
+            </div>
+            <div class="kategori-overlay">
+              <span class="kategori-name">Kategori A</span>
+              <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+            </div>
+            <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Kategori 2 -->
+        <div class="col-12 col-md-4 anim-in">
+          <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori B')">
+            <div style="overflow:hidden;">
+              <img src="https://lh3.googleusercontent.com/pw/AP1GczP_3DU3qdAZu-jGPUe3KkPLh_bzhHMunwz96jij_52fSor8Aki3RJnd3AAqofCn1EczfdpzJVEpAs6C3pdJfx4mr06h7CS7MykjNHe20gTaC1SDieFo5m3-3yCoqfHb9U9qFlZCKeQ4wUDXOjgkT0klqg=w950-h331-s-no-gm?authuser=0" alt="Kategori B">
+            </div>
+            <div class="kategori-overlay">
+              <span class="kategori-name">Kategori B</span>
+              <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+            </div>
+            <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Kategori 3 -->
+        <div class="col-12 col-md-4 anim-in">
+          <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori C')">
+            <div style="overflow:hidden;">
+              <img src="https://lh3.googleusercontent.com/pw/AP1GczMvNsEX-53zuWyrekoQWJpIGpggOS4N37Mv-T8va9kmRmUcBUhAQHL80WGtamlr7rRtvbOJ43kTKytq50dhNhVaFGfmvBqizJ4Ia1RxArECsLZfo-2OcevPpYO7V5eggV8rJNk216SdWFgKQxs0U4ppNQ=w949-h373-s-no-gm?authuser=0" alt="Kategori C">
+            </div>
+            <div class="kategori-overlay">
+              <span class="kategori-name">Kategori C</span>
+              <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+            </div>
+            <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+      <div id="promoCarousel" class="carousel slide promo-carousel" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPn3Krt0WCI1KgesQJKhYXjMzoLucu1RiQd9KmOsyEN6o9sqQ2aJr2_qGBTtEyz9r4gZZ49lr-whlyFIUK6HYubvChlrp2ouxhDEi8JZ5fdLYoRvh1aC3ANih8biraG43ynwUhh2js26FLgkrpc6eioSA=w380-h214-s-no-gm?authuser=0" alt="Promo 1">
+          </div>
+          <div class="carousel-item">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczP70wmGjRAQItStzpBF7sNH4-lwSTmHGvyxqaKOO9o_UrVSr6pR3uIz0n18mSNekeEGVRFii-jPhK9FtJh-QiW6alXe7Yu_-fPo_tby9z8U2hWHnHg7eg3OGmRyPU6aG2HWzOzd0B-WAs2oJ1T1JAAk1Q=w1304-h599-s-no-gm?authuser=0" alt="Promo 2">
+          </div>
+          <div class="carousel-item">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczO-U1CAcWwK_c4hTDIkO11VubPv7afpuvaIhoG_KOTY-oBE8vYoFjrDNuUVNEoYxsoG114bRm5LSDOWIXw6ZxDIFz9Z1OgkGJkOtBYZYFleZB5d17dBLuQgnwFOS66WrBwioo0JLuu0iPC5snXIlPMvlQ=w898-h599-s-no-gm?authuser=0" alt="Promo 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="mb-0">&copy;Aji setyo nugroho. Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- ========== TOAST CONTAINER ========== -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+    // === Toast Notification ===
+    function showToast(message) {
+      var container = document.getElementById('toastContainer');
+      var toast = document.createElement('div');
+      toast.className = 'custom-toast';
+      toast.innerHTML = '<i class="fas fa-folder-open" style="color: var(--accent);"></i> ' + message;
+      container.appendChild(toast);
+      setTimeout(function() {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 3200);
+    }
+
+    // === Scroll Reveal (IntersectionObserver) ===
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.anim-in').forEach(function(el, i) {
+      el.style.transitionDelay = (i * 0.1) + 's';
+      observer.observe(el);
+    });
+
+    // === Tutup navbar saat klik link (mobile) ===
+    document.querySelectorAll('#navbarNav .nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var navCollapse = document.getElementById('navbarNav');
+        var bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+        if (bsCollapse) bsCollapse.hide();
+      });
+    });
+  </script>
+</body>
+</html>
