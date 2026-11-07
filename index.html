@@ -2,11 +2,17 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Platform JB GAG2</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Bootstrap 5.3.8 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     /* === Variabel Warna (konsisten dengan semua halaman) === */
     :root {
@@ -22,7 +28,11 @@
       --success: #2ecc71;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -43,6 +53,7 @@
       top: 0;
       z-index: 1050;
     }
+
     .navbar-brand {
       color: var(--accent) !important;
       font-weight: 800;
@@ -50,6 +61,7 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
+
     .navbar .nav-link {
       color: var(--fg) !important;
       font-weight: 400;
@@ -59,11 +71,13 @@
       transition: all 0.25s ease;
       position: relative;
     }
+
     .navbar .nav-link:hover,
     .navbar .nav-link.active {
       color: var(--accent) !important;
       background-color: rgba(232, 168, 36, 0.08);
     }
+
     .navbar .nav-link::after {
       content: '';
       position: absolute;
@@ -76,17 +90,22 @@
       border-radius: 2px;
       transition: transform 0.25s ease;
     }
+
     .navbar .nav-link:hover::after,
     .navbar .nav-link.active::after {
       transform: translateX(-50%) scaleX(1);
     }
+
     .navbar-toggler {
       border: 1px solid var(--border) !important;
       padding: 4px 8px;
     }
-    .navbar-toggler-icon { filter: invert(1); }
 
-    /* === Section Box (Sesuai Referensi Gambar) === */
+    .navbar-toggler-icon {
+      filter: invert(1);
+    }
+
+    /* === Section Box === */
     .content-section-box {
       background: var(--card);
       border: 1px solid var(--border);
@@ -95,6 +114,7 @@
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
+
     .section-heading {
       font-weight: 700;
       font-size: 1.25rem;
@@ -114,10 +134,12 @@
       height: 100%;
       transition: all 0.3s ease;
     }
+
     .product-item-card:hover {
       border-color: rgba(232, 168, 36, 0.3);
       transform: translateY(-2px);
     }
+
     .product-item-img {
       width: 85px;
       height: 85px;
@@ -126,12 +148,14 @@
       border: 1px solid var(--border);
       flex-shrink: 0;
     }
+
     .product-item-info {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
+
     .product-item-title {
       font-size: 0.8rem;
       font-weight: 600;
@@ -143,33 +167,44 @@
       overflow: hidden;
       line-height: 1.2;
     }
+
     .product-item-price {
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--accent);
       margin-bottom: 8px;
     }
-    .product-actions {
+
+    /* === Tombol Beli (Gaya Daftar Harga) === */
+    .btn-beli {
       display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 6px;
-    }
-    .btn-buy {
-      background-color: var(--accent);
-      color: var(--bg);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 8px;
-      border: none;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.25s ease;
       width: 100%;
-      display: block;
+      padding: 6px 10px;
+      border: 1px solid rgba(232, 168, 36, 0.3);
+      background: rgba(232, 168, 36, 0.08);
+      color: var(--accent);
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
     }
-    .btn-buy:hover {
-      background-color: var(--accent-hover);
+
+    .btn-beli:hover {
+      background: var(--accent);
       color: var(--bg);
+      border-color: var(--accent);
+      transform: scale(1.03);
+      box-shadow: 0 4px 20px rgba(232, 168, 36, 0.3);
+    }
+
+    .btn-beli:active {
+      transform: scale(0.97);
     }
 
     /* === Hero Carousel === */
@@ -178,6 +213,7 @@
       overflow: hidden;
       border: 1px solid var(--border);
     }
+
     .hero-carousel .carousel-item img {
       width: 100%;
       height: auto;
@@ -185,27 +221,40 @@
       object-fit: cover;
       display: block;
     }
+
     @media (min-width: 768px) {
       .hero-carousel .carousel-item img {
         max-height: 400px;
       }
     }
-    .hero-carousel .carousel-indicators { bottom: 10px; }
+
+    .hero-carousel .carousel-indicators {
+      bottom: 10px;
+    }
+
     .hero-carousel .carousel-indicators [data-bs-target] {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background-color: var(--muted);
-      border: none; opacity: 0.5;
+      border: none;
+      opacity: 0.5;
       transition: all 0.3s ease;
     }
+
     .hero-carousel .carousel-indicators .active {
       background-color: var(--accent);
-      opacity: 1; width: 24px; border-radius: 4px;
+      opacity: 1;
+      width: 24px;
+      border-radius: 4px;
     }
+
     .carousel-control-prev,
     .carousel-control-next {
-      width: 40px; height: 40px;
-      top: 50%; transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      transform: translateY(-50%);
       bottom: auto;
       background: rgba(15, 15, 15, 0.7);
       border-radius: 50%;
@@ -213,8 +262,11 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
+
     .carousel:hover .carousel-control-prev,
-    .carousel:hover .carousel-control-next { opacity: 1; }
+    .carousel:hover .carousel-control-next {
+      opacity: 1;
+    }
 
     /* === Promo Carousel (bawah) === */
     .promo-carousel .carousel-inner {
@@ -222,6 +274,7 @@
       overflow: hidden;
       border: 1px solid var(--border);
     }
+
     .promo-carousel .carousel-item img {
       width: 100%;
       height: auto;
@@ -229,22 +282,32 @@
       object-fit: cover;
       display: block;
     }
+
     @media (min-width: 768px) {
       .promo-carousel .carousel-item img {
         max-height: 300px;
       }
     }
-    .promo-carousel .carousel-indicators { bottom: 8px; }
+
+    .promo-carousel .carousel-indicators {
+      bottom: 8px;
+    }
+
     .promo-carousel .carousel-indicators [data-bs-target] {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background-color: var(--muted);
-      border: none; opacity: 0.5;
+      border: none;
+      opacity: 0.5;
       transition: all 0.3s ease;
     }
+
     .promo-carousel .carousel-indicators .active {
       background-color: var(--accent);
-      opacity: 1; width: 24px; border-radius: 4px;
+      opacity: 1;
+      width: 24px;
+      border-radius: 4px;
     }
 
     /* === Footer === */
@@ -263,41 +326,10 @@
       transform: translateY(24px);
       transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+
     .anim-in.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    /* === Toast === */
-    .toast-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .custom-toast {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--fg);
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-family: 'Poppins', sans-serif;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-      animation: toast-in 0.4s ease, toast-out 0.4s ease 2.6s forwards;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    @keyframes toast-in {
-      from { opacity: 0; transform: translateX(40px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes toast-out {
-      to { opacity: 0; transform: translateX(40px); }
     }
 
     /* === Scrollbar === */
@@ -325,7 +357,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="https://home-two-drab.vercel.app" target="_self"><i class="fas fa-home me-1"></i> Home</a>
+            <a class="nav-link" href="https://home-two-drab.vercel.app" target="_self"><i class="fas fa-home me-1"></i> Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://daftar-item-six.vercel.app" target="_self"><i class="fas fa-boxes-stacked me-1"></i> Daftar Item</a>
@@ -380,39 +412,39 @@
         <!-- Item 1 -->
         <div class="col-12 col-md-4">
           <div class="product-item-card">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczPKQs7MPHLCbA1BS9WPCt3Y7f7-4SVLbbUVFYC_MPLzi2ziOQxB7clG9P8RLYp5Sl2WlZ41P8apTlTqINezMNeq2q1JW7fFwLWQTR5jq5bS1MnVQNgnfVJSBBAR3az30UiAeVuMM2f0yS0LOI8GoGeN8w=w317-h348-s-no-gm?authuser=0" class="product-item-img" alt="Tas Tangan Wanita">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPKQs7MPHLCbA1BS9WPCt3Y7f7-4SVLbbUVFYC_MPLzi2ziOQxB7clG9P8RLYp5Sl2WlZ41P8apTlTqINezMNeq2q1JW7fFwLWQTR5jq5bS1MnVQNgnfVJSBBAR3az30UiAeVuMM2f0yS0LOI8GoGeN8w=w317-h348-s-no-gm?authuser=0" class="product-item-img" alt="Dragon Breath">
             <div class="product-item-info">
               <div class="product-item-title">Dragon Breath</div>
               <div class="product-item-price">Rp 1.000</div>
-              <div class="product-actions">
-                <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-buy">Beli Sekarang</a>
-              </div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
             </div>
           </div>
         </div>
         <!-- Item 2 -->
         <div class="col-12 col-md-4">
           <div class="product-item-card">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczPB8kb5DHe_PCy7aOa1Xp1SDWePAee0TQeYz1qT0uuWNg-U_NLPQlhu1CPW9sx0Hl51S1crX1yoU9qfGWoEPDIgZsS2OQ15qGOyOP6AYPGf1MRznBPK4stuapDII5w040AdFI-pciYRnrx5dplUYNPtIQ=w331-h347-s-no-gm?authuser=0" class="product-item-img" alt="Tas Tangan Desain">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPB8kb5DHe_PCy7aOa1Xp1SDWePAee0TQeYz1qT0uuWNg-U_NLPQlhu1CPW9sx0Hl51S1crX1yoU9qfGWoEPDIgZsS2OQ15qGOyOP6AYPGf1MRznBPK4stuapDII5w040AdFI-pciYRnrx5dplUYNPtIQ=w331-h347-s-no-gm?authuser=0" class="product-item-img" alt="Hypno Bloom">
             <div class="product-item-info">
               <div class="product-item-title">Hypno Bloom</div>
               <div class="product-item-price">Rp 1.000</div>
-              <div class="product-actions">
-                <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-buy">Beli Sekarang</a>
-              </div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
             </div>
           </div>
         </div>
         <!-- Item 3 -->
         <div class="col-12 col-md-4">
           <div class="product-item-card">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczPIFGaTI1Xdw5dMNbJsqWvwuS4leVXyLw4Dv7TWMd2rvk2hfPA-pgFhAAsFdXhHvsy-on2oIYL2X2A2esbrd8rPidR2crHf0J9qsGCznsiykH3ZTH9P0IbJXWoksmwSiUcHBxKJOfxQhHrJOFPEvm9yzQ=w324-h347-s-no-gm?authuser=0" class="product-item-img" alt="Tas Rajut Tangan">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPIFGaTI1Xdw5dMNbJsqWvwuS4leVXyLw4Dv7TWMd2rvk2hfPA-pgFhAAsFdXhHvsy-on2oIYL2X2A2esbrd8rPidR2crHf0J9qsGCznsiykH3ZTH9P0IbJXWoksmwSiUcHBxKJOfxQhHrJOFPEvm9yzQ=w324-h347-s-no-gm?authuser=0" class="product-item-img" alt="Moon Bloom">
             <div class="product-item-info">
               <div class="product-item-title">Moon Bloom</div>
               <div class="product-item-price">Rp 1.000</div>
-              <div class="product-actions">
-                <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-buy">Beli Sekarang</a>
-              </div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
             </div>
           </div>
         </div>
@@ -426,39 +458,39 @@
         <!-- Item 1 -->
         <div class="col-12 col-md-4">
           <div class="product-item-card">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczP2VQkkvqDUdo-kovMeNf_o7S2o4ZcWMzwARsN6f4Hr0QQu7O-Hhi-ksDDUoZxqq7BL97OVDzRQeP6PwbMXT25CcEIQS8uRm-VaPXFjN5xR8wVbdxuRX_jwzopn8KBUPnofZPH2T5hTQbiVgDCRhAmUbw=w286-h331-s-no-gm?authuser=0" class="product-item-img" alt="Wanita Putih Dalton">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczP2VQkkvqDUdo-kovMeNf_o7S2o4ZcWMzwARsN6f4Hr0QQu7O-Hhi-ksDDUoZxqq7BL97OVDzRQeP6PwbMXT25CcEIQS8uRm-VaPXFjN5xR8wVbdxuRX_jwzopn8KBUPnofZPH2T5hTQbiVgDCRhAmUbw=w286-h331-s-no-gm?authuser=0" class="product-item-img" alt="Venom Spiter">
             <div class="product-item-info">
               <div class="product-item-title">Venom Spiter</div>
               <div class="product-item-price">Rp 1.000</div>
-              <div class="product-actions">
-                <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-buy">Beli Sekarang</a>
-              </div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
             </div>
           </div>
         </div>
         <!-- Item 2 -->
         <div class="col-12 col-md-4">
           <div class="product-item-card">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczOr3HOpP1JSJC39eEjaxqmhr3b5k_nvBG4CsQu2VN104uack9fScs_E0qg6lPWoSmKGsmqgwHxHsUTmYRCktQFcD2rzE6fkbE1kY2T-P27Pj8HlgC9gJVmMEHS3HfzsU_mWc-LLDvIdtlQDygrSpnZAEA=w362-h330-s-no-gm?authuser=0" class="product-item-img" alt="Tas Tangan Wanita Elegan">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczOr3HOpP1JSJC39eEjaxqmhr3b5k_nvBG4CsQu2VN104uack9fScs_E0qg6lPWoSmKGsmqgwHxHsUTmYRCktQFcD2rzE6fkbE1kY2T-P27Pj8HlgC9gJVmMEHS3HfzsU_mWc-LLDvIdtlQDygrSpnZAEA=w362-h330-s-no-gm?authuser=0" class="product-item-img" alt="Super Watering Can">
             <div class="product-item-info">
               <div class="product-item-title">Super Watering Can</div>
               <div class="product-item-price">Rp 100</div>
-              <div class="product-actions">
-                <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-buy">Beli Sekarang</a>
-              </div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
             </div>
           </div>
         </div>
         <!-- Item 3 -->
         <div class="col-12 col-md-4">
           <div class="product-item-card">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczO5Kzrui9jCelnCsS3eyl1Y7P0o4yuVh5z4MCKyiKkmGyXCaK9_qIzNo__5M0YJbVoz-p5-Y_bihgqzVK6d2LjGBsDm0Jo4rpJ6nDkl44SGr4wp0x7IOgH0XG7GFYm6vsbi6jn8yTJ78xXLumkXjF2XzA=w332-h331-s-no-gm?authuser=0" class="product-item-img" alt="Tas Wanita 2 Tali">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczO5Kzrui9jCelnCsS3eyl1Y7P0o4yuVh5z4MCKyiKkmGyXCaK9_qIzNo__5M0YJbVoz-p5-Y_bihgqzVK6d2LjGBsDm0Jo4rpJ6nDkl44SGr4wp0x7IOgH0XG7GFYm6vsbi6jn8yTJ78xXLumkXjF2XzA=w332-h331-s-no-gm?authuser=0" class="product-item-img" alt="Super Springkle">
             <div class="product-item-info">
               <div class="product-item-title">Super Springkle</div>
               <div class="product-item-price">Rp 100</div>
-              <div class="product-actions">
-                <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-buy">Beli Sekarang</a>
-              </div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
             </div>
           </div>
         </div>
@@ -500,16 +532,16 @@
   <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
     <div class="container">
-      <p class="mb-0">&copy;Aji setyo nugroho. Semua hak dilindungi.</p>
+      <p class="mb-0">&copy; Aji setyo nugroho Platform JB. Semua hak dilindungi.</p>
     </div>
   </footer>
 
-  <!-- ========== TOAST CONTAINER ========== -->
-  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <!-- ========== BOOTSTRAP JS ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
   <script>
-    // === Scroll Reveal (IntersectionObserver) ===
+    // === Scroll Reveal Animation ===
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -528,7 +560,9 @@
       link.addEventListener('click', function() {
         var navCollapse = document.getElementById('navbarNav');
         var bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
-        if (bsCollapse) bsCollapse.hide();
+        if (bsCollapse) {
+          bsCollapse.hide();
+        }
       });
     });
   </script>
