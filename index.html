@@ -107,6 +107,33 @@
       margin-bottom: 0.8rem;
     }
 
+    /* === Custom Nav Pills === */
+    .custom-pills {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1.2rem !important;
+    }
+    .custom-pills .nav-link {
+      background-color: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      margin-right: 8px;
+      transition: all 0.3s ease;
+    }
+    .custom-pills .nav-link:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+    .custom-pills .nav-link.active {
+      background-color: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
     /* === Hero Carousel === */
     .hero-carousel .carousel-inner {
       border-radius: 16px;
@@ -223,6 +250,87 @@
       .kategori-card img { height: 220px; }
     }
 
+    /* === Product Card (Terlaris & Terbaru) === */
+    .product-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .product-card:hover {
+      border-color: rgba(232, 168, 36, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+    .product-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+    .product-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .product-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+    .product-info {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .product-price {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15, 15, 15, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      z-index: 2;
+    }
+    .btn-product {
+      background: rgba(232, 168, 36, 0.12);
+      border: 1px solid rgba(232, 168, 36, 0.3);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      width: 100%;
+      transition: all 0.25s ease;
+      margin-top: auto;
+    }
+    .btn-product:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
     /* === Promo Carousel (bawah) === */
     .promo-carousel .carousel-inner {
       border-radius: 16px;
@@ -315,7 +423,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .anim-in { opacity: 1; transform: none; transition: none; }
-      .kategori-card, .kategori-card img, .kategori-card .kategori-arrow {
+      .kategori-card, .kategori-card img, .kategori-card .kategori-arrow, .product-card {
         transition: none !important;
       }
     }
@@ -383,59 +491,176 @@
       </div>
     </section>
 
-    <!-- ========== KATEGORI STOK ========== -->
-    <section class="mt-4" aria-label="Kategori Stok">
+    <!-- ========== KATEGORI, TERLARIS & TERBARU (TAB SECTION) ========== -->
+    <section class="mt-4" aria-label="Katalog Stok & Produk">
       <div class="accent-line"></div>
-      <h2 class="section-heading">Kategori Stok</h2>
-      <p class="section-subheading">Jelajahi item berdasarkan kategori yang tersedia</p>
+      <h2 class="section-heading">Katalog Stok & Produk</h2>
+      <p class="section-subheading">Jelajahi berdasarkan kategori, produk terlaris, atau item terbaru</p>
 
-      <div class="row g-3">
+      <!-- Nav Pills Tabs -->
+      <ul class="nav nav-pills custom-pills" id="katalogTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="kategori-tab" data-bs-toggle="pill" data-bs-target="#kategori-pane" type="button" role="tab" aria-controls="kategori-pane" aria-selected="true">
+            <i class="fas fa-boxes-stacked me-1"></i> Kategori Stok
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="terlaris-tab" data-bs-toggle="pill" data-bs-target="#terlaris-pane" type="button" role="tab" aria-controls="terlaris-pane" aria-selected="false">
+            <i class="fas fa-fire me-1 text-warning"></i> Produk Terlaris
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="terbaru-tab" data-bs-toggle="pill" data-bs-target="#terbaru-pane" type="button" role="tab" aria-controls="terbaru-pane" aria-selected="false">
+            <i class="fas fa-sparkles me-1 text-info"></i> Produk Terbaru
+          </button>
+        </li>
+      </ul>
 
-        <!-- Kategori 1 -->
-        <div class="col-12 col-md-4 anim-in">
-          <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori A')">
-            <div style="overflow:hidden;">
-              <img src="https://lh3.googleusercontent.com/pw/AP1GczPoIr9Uh9yc4nudEb1Ze_Jc_yPyBK14mecpOIkruKnZmVSukssv98Sx5LLgHzxdNLXVvHuB6urnQ23-4SfhQVEx1mwJzHUiw3Si2zel78tlCRUdu8ykSwTSv3cLkW5Onk4jB_hn9g6_Lk8ZZFQmxXsLEA=w968-h348-s-no-gm?authuser=0" alt="Kategori A">
+      <!-- Tab Content -->
+      <div class="tab-content" id="katalogTabContent">
+        
+        <!-- Pane 1: Kategori Stok -->
+        <div class="tab-pane fade show active" id="kategori-pane" role="tabpanel" aria-labelledby="kategori-tab" tabindex="0">
+          <div class="row g-3">
+            <!-- Kategori 1 -->
+            <div class="col-12 col-md-4 anim-in">
+              <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori A')">
+                <div style="overflow:hidden;">
+                  <img src="https://lh3.googleusercontent.com/pw/AP1GczPoIr9Uh9yc4nudEb1Ze_Jc_yPyBK14mecpOIkruKnZmVSukssv98Sx5LLgHzxdNLXVvHuB6urnQ23-4SfhQVEx1mwJzHUiw3Si2zel78tlCRUdu8ykSwTSv3cLkW5Onk4jB_hn9g6_Lk8ZZFQmxXsLEA=w968-h348-s-no-gm?authuser=0" alt="Kategori A">
+                </div>
+                <div class="kategori-overlay">
+                  <span class="kategori-name">Kategori A</span>
+                  <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+                </div>
+                <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+              </div>
             </div>
-            <div class="kategori-overlay">
-              <span class="kategori-name">Kategori A</span>
-              <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+
+            <!-- Kategori 2 -->
+            <div class="col-12 col-md-4 anim-in">
+              <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori B')">
+                <div style="overflow:hidden;">
+                  <img src="https://lh3.googleusercontent.com/pw/AP1GczP_3DU3qdAZu-jGPUe3KkPLh_bzhHMunwz96jij_52fSor8Aki3RJnd3AAqofCn1EczfdpzJVEpAs6C3pdJfx4mr06h7CS7MykjNHe20gTaC1SDieFo5m3-3yCoqfHb9U9qFlZCKeQ4wUDXOjgkT0klqg=w950-h331-s-no-gm?authuser=0" alt="Kategori B">
+                </div>
+                <div class="kategori-overlay">
+                  <span class="kategori-name">Kategori B</span>
+                  <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+                </div>
+                <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+              </div>
             </div>
-            <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+
+            <!-- Kategori 3 -->
+            <div class="col-12 col-md-4 anim-in">
+              <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori C')">
+                <div style="overflow:hidden;">
+                  <img src="https://lh3.googleusercontent.com/pw/AP1GczMvNsEX-53zuWyrekoQWJpIGpggOS4N37Mv-T8va9kmRmUcBUhAQHL80WGtamlr7rRtvbOJ43kTKytq50dhNhVaFGfmvBqizJ4Ia1RxArECsLZfo-2OcevPpYO7V5eggV8rJNk216SdWFgKQxs0U4ppNQ=w949-h373-s-no-gm?authuser=0" alt="Kategori C">
+                </div>
+                <div class="kategori-overlay">
+                  <span class="kategori-name">Kategori C</span>
+                  <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+                </div>
+                <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Kategori 2 -->
-        <div class="col-12 col-md-4 anim-in">
-          <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori B')">
-            <div style="overflow:hidden;">
-              <img src="https://lh3.googleusercontent.com/pw/AP1GczP_3DU3qdAZu-jGPUe3KkPLh_bzhHMunwz96jij_52fSor8Aki3RJnd3AAqofCn1EczfdpzJVEpAs6C3pdJfx4mr06h7CS7MykjNHe20gTaC1SDieFo5m3-3yCoqfHb9U9qFlZCKeQ4wUDXOjgkT0klqg=w950-h331-s-no-gm?authuser=0" alt="Kategori B">
+        <!-- Pane 2: Produk Terlaris -->
+        <div class="tab-pane fade" id="terlaris-pane" role="tabpanel" aria-labelledby="terlaris-tab" tabindex="0">
+          <div class="row g-3">
+            <!-- Produk Terlaris 1 -->
+            <div class="col-12 col-sm-6 col-md-4 anim-in">
+              <div class="product-card">
+                <span class="product-badge"><i class="fas fa-fire text-warning me-1"></i> Terlaris</span>
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPoIr9Uh9yc4nudEb1Ze_Jc_yPyBK14mecpOIkruKnZmVSukssv98Sx5LLgHzxdNLXVvHuB6urnQ23-4SfhQVEx1mwJzHUiw3Si2zel78tlCRUdu8ykSwTSv3cLkW5Onk4jB_hn9g6_Lk8ZZFQmxXsLEA=w968-h348-s-no-gm?authuser=0" alt="Produk Terlaris 1">
+                <div class="product-body">
+                  <h3 class="product-title">Item Unggulan A1</h3>
+                  <div class="product-info">Terjual 500+ unit minggu ini</div>
+                  <div class="product-price">Rp 150.000</div>
+                  <button class="btn btn-product" onclick="showToast('Melihat detail: Item Unggulan A1')"><i class="fas fa-eye me-1"></i> Lihat Detail</button>
+                </div>
+              </div>
             </div>
-            <div class="kategori-overlay">
-              <span class="kategori-name">Kategori B</span>
-              <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+            <!-- Produk Terlaris 2 -->
+            <div class="col-12 col-sm-6 col-md-4 anim-in">
+              <div class="product-card">
+                <span class="product-badge"><i class="fas fa-fire text-warning me-1"></i> Terlaris</span>
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczP_3DU3qdAZu-jGPUe3KkPLh_bzhHMunwz96jij_52fSor8Aki3RJnd3AAqofCn1EczfdpzJVEpAs6C3pdJfx4mr06h7CS7MykjNHe20gTaC1SDieFo5m3-3yCoqfHb9U9qFlZCKeQ4wUDXOjgkT0klqg=w950-h331-s-no-gm?authuser=0" alt="Produk Terlaris 2">
+                <div class="product-body">
+                  <h3 class="product-title">Item Unggulan B2</h3>
+                  <div class="product-info">Terjual 350+ unit minggu ini</div>
+                  <div class="product-price">Rp 225.000</div>
+                  <button class="btn btn-product" onclick="showToast('Melihat detail: Item Unggulan B2')"><i class="fas fa-eye me-1"></i> Lihat Detail</button>
+                </div>
+              </div>
             </div>
-            <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+            <!-- Produk Terlaris 3 -->
+            <div class="col-12 col-sm-6 col-md-4 anim-in">
+              <div class="product-card">
+                <span class="product-badge"><i class="fas fa-fire text-warning me-1"></i> Terlaris</span>
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMvNsEX-53zuWyrekoQWJpIGpggOS4N37Mv-T8va9kmRmUcBUhAQHL80WGtamlr7rRtvbOJ43kTKytq50dhNhVaFGfmvBqizJ4Ia1RxArECsLZfo-2OcevPpYO7V5eggV8rJNk216SdWFgKQxs0U4ppNQ=w949-h373-s-no-gm?authuser=0" alt="Produk Terlaris 3">
+                <div class="product-body">
+                  <h3 class="product-title">Item Unggulan C3</h3>
+                  <div class="product-info">Terjual 280+ unit minggu ini</div>
+                  <div class="product-price">Rp 95.000</div>
+                  <button class="btn btn-product" onclick="showToast('Melihat detail: Item Unggulan C3')"><i class="fas fa-eye me-1"></i> Lihat Detail</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Kategori 3 -->
-        <div class="col-12 col-md-4 anim-in">
-          <div class="kategori-card" onclick="showToast('Membuka kategori: Kategori C')">
-            <div style="overflow:hidden;">
-              <img src="https://lh3.googleusercontent.com/pw/AP1GczMvNsEX-53zuWyrekoQWJpIGpggOS4N37Mv-T8va9kmRmUcBUhAQHL80WGtamlr7rRtvbOJ43kTKytq50dhNhVaFGfmvBqizJ4Ia1RxArECsLZfo-2OcevPpYO7V5eggV8rJNk216SdWFgKQxs0U4ppNQ=w949-h373-s-no-gm?authuser=0" alt="Kategori C">
+        <!-- Pane 3: Produk Terbaru -->
+        <div class="tab-pane fade" id="terbaru-pane" role="tabpanel" aria-labelledby="terbaru-tab" tabindex="0">
+          <div class="row g-3">
+            <!-- Produk Terbaru 1 -->
+            <div class="col-12 col-sm-6 col-md-4 anim-in">
+              <div class="product-card">
+                <span class="product-badge"><i class="fas fa-sparkles text-info me-1"></i> Terbaru</span>
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPn3Krt0WCI1KgesQJKhYXjMzoLucu1RiQd9KmOsyEN6o9sqQ2aJr2_qGBTtEyz9r4gZZ49lr-whlyFIUK6HYubvChlrp2ouxhDEi8JZ5fdLYoRvh1aC3ANih8biraG43ynwUhh2js26FLgkrpc6eioSA=w380-h214-s-no-gm?authuser=0" alt="Produk Terbaru 1">
+                <div class="product-body">
+                  <h3 class="product-title">Item Rilis Baru V1</h3>
+                  <div class="product-info">Baru rilis hari ini</div>
+                  <div class="product-price">Rp 180.000</div>
+                  <button class="btn btn-product" onclick="showToast('Melihat detail: Item Rilis Baru V1')"><i class="fas fa-eye me-1"></i> Lihat Detail</button>
+                </div>
+              </div>
             </div>
-            <div class="kategori-overlay">
-              <span class="kategori-name">Kategori C</span>
-              <span class="kategori-count"><i class="fas fa-box"></i> 3 item tersedia</span>
+            <!-- Produk Terbaru 2 -->
+            <div class="col-12 col-sm-6 col-md-4 anim-in">
+              <div class="product-card">
+                <span class="product-badge"><i class="fas fa-sparkles text-info me-1"></i> Terbaru</span>
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczP70wmGjRAQItStzpBF7sNH4-lwSTmHGvyxqaKOO9o_UrVSr6pR3uIz0n18mSNekeEGVRFii-jPhK9FtJh-QiW6alXe7Yu_-fPo_tby9z8U2hWHnHg7eg3OGmRyPU6aG2HWzOzd0B-WAs2oJ1T1JAAk1Q=w1304-h599-s-no-gm?authuser=0" alt="Produk Terbaru 2">
+                <div class="product-body">
+                  <h3 class="product-title">Item Rilis Baru V2</h3>
+                  <div class="product-info">Baru rilis kemarin</div>
+                  <div class="product-price">Rp 275.000</div>
+                  <button class="btn btn-product" onclick="showToast('Melihat detail: Item Rilis Baru V2')"><i class="fas fa-eye me-1"></i> Lihat Detail</button>
+                </div>
+              </div>
             </div>
-            <span class="kategori-arrow"><i class="fas fa-arrow-right"></i></span>
+            <!-- Produk Terbaru 3 -->
+            <div class="col-12 col-sm-6 col-md-4 anim-in">
+              <div class="product-card">
+                <span class="product-badge"><i class="fas fa-sparkles text-info me-1"></i> Terbaru</span>
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczO-U1CAcWwK_c4hTDIkO11VubPv7afpuvaIhoG_KOTY-oBE8vYoFjrDNuUVNEoYxsoG114bRm5LSDOWIXw6ZxDIFz9Z1OgkGJkOtBYZYFleZB5d17dBLuQgnwFOS66WrBwioo0JLuu0iPC5snXIlPMvlQ=w898-h599-s-no-gm?authuser=0" alt="Produk Terbaru 3">
+                <div class="product-body">
+                  <h3 class="product-title">Item Rilis Baru V3</h3>
+                  <div class="product-info">Batch produksi pertama</div>
+                  <div class="product-price">Rp 120.000</div>
+                  <button class="btn btn-product" onclick="showToast('Melihat detail: Item Rilis Baru V3')"><i class="fas fa-eye me-1"></i> Lihat Detail</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
     </section>
 
+    <!-- ========== PROMO CAROUSEL ========== -->
+    <section class="mt-4 pt-2" aria-label="Banner Promo">
       <div id="promoCarousel" class="carousel slide promo-carousel" data-bs-ride="carousel" data-bs-interval="4000">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
