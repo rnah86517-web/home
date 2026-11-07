@@ -113,13 +113,38 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .section-heading-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
     }
 
     .section-heading {
       font-weight: 700;
       font-size: 1.25rem;
-      margin-bottom: 1.2rem;
       color: var(--fg);
+      margin-bottom: 0;
+    }
+
+    /* === Tombol Lihat Semua === */
+    .btn-lihat-semua {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-lihat-semua:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
     }
 
     /* === Horizontal Product Item Card === */
@@ -175,7 +200,7 @@
       margin-bottom: 8px;
     }
 
-    /* === Tombol Beli (Gaya Daftar Harga) === */
+    /* === Tombol Beli === */
     .btn-beli {
       display: flex;
       align-items: center;
@@ -407,7 +432,7 @@
 
     <!-- ========== PRODUK TERLARIS ========== -->
     <section class="content-section-box anim-in" aria-label="Produk Terlaris">
-      <h2 class="section-heading">Produk Terlaris</h2>
+      <h2 class="section-heading mb-3">Produk Terlaris</h2>
       <div class="row g-3">
         <!-- Item 1 -->
         <div class="col-12 col-md-4">
@@ -453,7 +478,7 @@
 
     <!-- ========== PRODUK TERBARU ========== -->
     <section class="content-section-box anim-in" aria-label="Produk Terbaru">
-      <h2 class="section-heading">Produk Terbaru</h2>
+      <h2 class="section-heading mb-3">Produk Terbaru</h2>
       <div class="row g-3">
         <!-- Item 1 -->
         <div class="col-12 col-md-4">
@@ -488,6 +513,96 @@
             <div class="product-item-info">
               <div class="product-item-title">Super Springkle</div>
               <div class="product-item-price">Rp 100</div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== KATALOG PRODUK TAMBAHAN (DI BAWAH PRODUK TERBARU - 6 KOTAK) ========== -->
+    <section class="content-section-box anim-in" aria-label="Katalog Produk">
+      <div class="section-heading-wrapper">
+        <h2 class="section-heading">Katalog Produk</h2>
+        <a href="https://daftar-harga-tkkp.vercel.app" target="_self" class="btn-lihat-semua">
+          Lihat Semua <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="row g-3">
+        <!-- Produk 1 -->
+        <div class="col-12 col-md-4">
+          <div class="product-item-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPnKUADW19_mfcuOPEYJ_jV99rhmMh1NyZ77MuWbuP25D4a9TYsJvUI491frLFzVbToyosBJtCgXHIJOlpL677Aadrk-mV5QNeNeESTbmzcdAMBWgUrGXp1KvKQ9x8g3qZJhnv6eZQMZzi72VBwJmkocw=w318-h372-s-no-gm?authuser=0" class="product-item-img" alt="Produk Pilihan 1">
+            <div class="product-item-info">
+              <div class="product-item-title">Produk Pilihan V1</div>
+              <div class="product-item-price">Rp 100</div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 2 -->
+        <div class="col-12 col-md-4">
+          <div class="product-item-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczMMb_2EQM2sIbA0NZeBue-4W1U2RhGZy6xz3fOXcB33fhRUtUlt-z4aFD9IlanlJlpfCDCiKriu8R_AOMFK-bSeLYl2-WmtGByuRUVlb6Df7zFoDpO72BWuJigiGF0gs8m6AEqMWYq-4Kwi37Aaox-fxw=w323-h372-s-no-gm?authuser=0" class="product-item-img" alt="Produk Pilihan 2">
+            <div class="product-item-info">
+              <div class="product-item-title">Produk Pilihan V2</div>
+              <div class="product-item-price">Rp 300</div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 3 -->
+        <div class="col-12 col-md-4">
+          <div class="product-item-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPCNGq-s96q7dWUJVTJI89ck9CoDpUUzbpQ2VMC3_tm56Z8F_5XL7Ep4GnPazRx2KRfrbwu2rbUTw1PgETDTDxZJaGcHeohqOlbpQeFyPlnqI-6iRByRmoWgkdAi9rWhGrUb-qoKf-Fe23BMTj5b4G1QA=w319-h373-s-no-gm?authuser=0" class="product-item-img" alt="Produk Pilihan 3">
+            <div class="product-item-info">
+              <div class="product-item-title">Produk Pilihan V3</div>
+              <div class="product-item-price">Rp 500</div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 4 -->
+        <div class="col-12 col-md-4">
+          <div class="product-item-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPKQs7MPHLCbA1BS9WPCt3Y7f7-4SVLbbUVFYC_MPLzi2ziOQxB7clG9P8RLYp5Sl2WlZ41P8apTlTqINezMNeq2q1JW7fFwLWQTR5jq5bS1MnVQNgnfVJSBBAR3az30UiAeVuMM2f0yS0LOI8GoGeN8w=w317-h348-s-no-gm?authuser=0" class="product-item-img" alt="Produk Pilihan 4">
+            <div class="product-item-info">
+              <div class="product-item-title">Produk Pilihan V4</div>
+              <div class="product-item-price">Rp 1.000</div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 5 -->
+        <div class="col-12 col-md-4">
+          <div class="product-item-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczPIFGaTI1Xdw5dMNbJsqWvwuS4leVXyLw4Dv7TWMd2rvk2hfPA-pgFhAAsFdXhHvsy-on2oIYL2X2A2esbrd8rPidR2crHf0J9qsGCznsiykH3ZTH9P0IbJXWoksmwSiUcHBxKJOfxQhHrJOFPEvm9yzQ=w324-h347-s-no-gm?authuser=0" class="product-item-img" alt="Produk Pilihan 5">
+            <div class="product-item-info">
+              <div class="product-item-title">Produk Pilihan V5</div>
+              <div class="product-item-price">Rp 1.000</div>
+              <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
+                <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Produk 6 -->
+        <div class="col-12 col-md-4">
+          <div class="product-item-card">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczP2VQkkvqDUdo-kovMeNf_o7S2o4ZcWMzwARsN6f4Hr0QQu7O-Hhi-ksDDUoZxqq7BL97OVDzRQeP6PwbMXT25CcEIQS8uRm-VaPXFjN5xR8wVbdxuRX_jwzopn8KBUPnofZPH2T5hTQbiVgDCRhAmUbw=w286-h331-s-no-gm?authuser=0" class="product-item-img" alt="Produk Pilihan 6">
+            <div class="product-item-info">
+              <div class="product-item-title">Produk Pilihan V6</div>
+              <div class="product-item-price">Rp 1.000</div>
               <a href="https://transaksi-a7zx.vercel.app" target="_self" class="btn-beli">
                 <i class="fas fa-cart-plus me-1"></i> Beli Sekarang
               </a>
